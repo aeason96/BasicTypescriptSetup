@@ -7,7 +7,7 @@
     "strictNullChecks": true,
     "noImplicitAny": true
   },
-  "files": [
-    "src/index.ts"
+  "include": [
+    "./src"
   ]
 }

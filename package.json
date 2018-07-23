@@ -4,17 +4,24 @@
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:test": "tsc -p test",
     "build:commonjs": "rimraf lib && tsc --target es5 --outDir lib --module commonjs --declaration",
     "build:es": "rimraf es && tsc --target es6 --outDir es --module es6",
     "build": "npm run build:commonjs && npm run build:es",
     "ts": "ts-node src/",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "prestart": "npm run build:commonjs",
+    "start": "node lib/index",
+    "pretest": "npm run build:commonjs && npm run build:test",
+    "test": "jasmine --config=./jasmine.json"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jasmine": "^2.8.8",
+    "@types/node": "^10.5.2",
+    "jasmine": "^3.1.0",
     "rimraf": "^2.6.2",
     "ts-node": "^7.0.0",
     "typescript": "^2.9.2"
